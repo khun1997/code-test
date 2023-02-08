@@ -1,7 +1,49 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+// import React, { useEffect, useState } from 'react';
+// // import styled, { ThemeProvider, keyframes } from 'styled-components';
 
 // import './App.css';
+
+import React from "react";
+import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+import Home from "./components/Routers/home";
+import About from "./components/Routers/about";
+import Contact from "./components/Routers/contact";
+
+function App(){
+  return(
+    <Router>
+      <div className="App">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+          </ul>
+      </div>
+
+      <Routes>
+        <Route exact path="/" element={<Home/>} ></Route>
+        <Route exact path="/about" element={<About/>} ></Route>
+        <Route exact path="/contact" element={<Contact/>} ></Route>
+      </Routes>
+    </Router>
+
+
+  )
+  
+}
+
+export default App;
+
+
+
+
+
 
 
 //ADAPT STYLE
@@ -292,53 +334,144 @@ import styled, { keyframes } from 'styled-components';
 //   }
 
 
-//rotate
-// const rotate = keyframes`
-//   from{
-//     transform :rotate(0deg);
-//   }
-//   to{
-//     transform: rotate(360deg);
-//   }
-// `;
 
-// const Rotate = styled.div`
-//   display: inline-block;
-//   animation: ${rotate} 2s linear infinite;
-//   margin: 3em;
-//   padding: 3em;
+
+
+
+//rotate
+/* 
+const Button =styled.button`
+  font-size:1em;
+  color: ${props => props.theme.main};
+  border: 3px solid ${props => props.theme.maim};
+  padding: 1em 1em;
+  margin: 2em;
+  background: white;
+`;
+
+Button.defaultProps ={
+  theme:{
+    main:'red'
   
+
+const theme = {
+  main :'green'
+} */
+
+/* 
+function App(){
+  return(
+    <div>
+      <Button>Normal button</Button>
+
+      <ThemeProvider theme={theme}>
+        <Button>Theme button</Button>
+      </ThemeProvider>
+    </div>
+  )
+// }  */
+
+// //ThemeProvider //function
+
+// const Button =styled.button`
+//   font-size:1em;
+//   margin: 2em 1em;
+//   padding:0.7em 1em;
+//   border-radius:7px;
+
+//   color: ${props => props.theme.fg};
+//   border: 2px solid ${props =>props.theme.fg};
+//   background: ${props => props.theme.bg};
+
 // `;
+// const theme ={
+//   fg:'red',
+//   bg:'white'
+// }
+
+// const invertedTheme = ({fg,bg}) =>({
+//   fg:bg,
+//   bg:fg
+// });
 
 
 // function App(){
 //   return(
-//     <Rotate>hello</Rotate>
+//     <ThemeProvider theme={theme}>
+//       <div>
+//         <Button>Normal button</Button>
+
+//         <ThemeProvider theme={invertedTheme}>
+//           <Button>Inverted button</Button>
+//         </ThemeProvider>
+//       </div>
+//     </ThemeProvider>
 //   )
-// };
+// }
 
-//rotate
 
-const rotate = keyframes`
-  from{
-    transform: rotate(0deg);
-  }
-  to{
-    transform: rotate(360deg);
-  }
-`;
+//fetch with useEffect Hook
+// // function App(){
+// // const [state,setState] = useState([])
 
-const Rotate = styled.div`
-  animation: ${rotate} 1s linear infinite;
-  display: inline-block;
-  margin:2em;
-  padding:2em;
 
-`;
-function App(){
-  return(
-    <Rotate> hello </Rotate>
-  )
-};
 
-export default App;
+// function App() {
+//   const [state, setState] = useState([])
+//   useEffect(() => {
+//       fetch("'https://fakestoreapi.com/products/1").then(
+//           res => setState(res.data)
+//       )
+//   },[])
+//   return (
+//       <>
+//           {state.map( d => <div>{d}</div>)}        
+//       </>
+// //   )
+// // }
+
+// function App() {
+//   const [state, setState] = useState([])
+//   const [hasError, setHasError] = useState(false)
+//   useEffect(() => {
+//       fetch("/api/data").then(
+//           res => {
+//           return setState(res.data);
+//         }
+//       ).catch(err => setHasError(true))
+//   }, [])
+//   return (
+//       <>
+//           {hasError? <div>Error occured.</div> : (state.map( d => <div>{d}</div>))}     
+//       </>
+//   )
+//   }
+
+// 1. Import *useState* and *useEffect*
+// import React, {useState, useEffect} from 'react';
+// import './App.css';
+
+// function App() {
+//     // 2. Create our *dogImage* variable as well as the *setDogImage* function via useState
+//     // We're setting the default value of dogImage to null, so that while we wait for the
+//     // fetch to complete, we dont attempt to render the image
+//   let [dogImage, setDogImage] = useState(null)
+
+//     // 3. Create out useEffect function
+//   useEffect(() => {
+//     fetch("https://dog.ceo/api/breeds/image/random")
+//     .then(response => response.json())
+//         // 4. Setting *dogImage* to the image url that we received from the response above
+//     .then(data => setDogImage(data.message))
+//   },[])
+
+//   return (
+//     <div className="App">
+//         {/* 5. Using *dogImage as* the *src* for our image*/}
+//     {dogImage && <img src={dogImage}></img>}
+//     </div>
+//   );
+// }
+
+
+// export default App;
